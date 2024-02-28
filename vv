@@ -1,0 +1,40 @@
+\documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,positioning}
+\begin{document}
+\begin{tikzpicture}[node distance=1cm, auto,]
+\tikzset{
+  block/.style    = {draw, thick, rectangle, minimum height = 3em,
+    minimum width = 3em},
+  sum/.style      = {draw, circle, node distance = 2cm}, % Adder
+  input/.style    = {coordinate}, % Input
+  output/.style   = {coordinate} % Output
+}
+% We start by placing the blocks
+\node [block] (infra) {زیرساخت‌ها و نیازمندی‌های امنیتی};
+\node [block, right = of infra] (view) {دیدگاه‌های امنیتی};
+\node [block, right = of view] (tool) {ابزارهای امنیتی};
+\node [block, below = of infra] (tech) {فناوری‌های امنیت};
+\node [block, below = of tech] (proc) {فرایندهای اجرایی امنیت};
+\node [block, below = of proc] (res) {منابع عملیاتی کردن امنیت};
+\node [block, below = of view] (cog) {شناختی};
+\node [block, below = of cog] (ser) {خدماتی};
+\node [block, below = of ser] (sub) {زیرساختی};
+\node [block, below = of tool] (pol) {سیاست‌گذاری و برنامه‌ریزی};
+\node [block, below = of pol] (mon) {نظارت و ارزیابی مستمر};
+\node [block, below = of mon] (coo) {هماهنگی و همکاری};
+% We draw an edge between the controller and system block to 
+% calculate the coordinate u. We need it to place the measurement block. 
+\draw [->] (infra) -- node[name=u] {} (view);
+\draw [->] (view) -- node {} (tool);
+\draw [->] (infra) -- node {} (tech);
+\draw [->] (tech) -- node {} (proc);
+\draw [->] (proc) -- node {} (res);
+\draw [->] (view) -- node {} (cog);
+\draw [->] (cog) -- node {} (ser);
+\draw [->] (ser) -- node {} (sub);
+\draw [->] (tool) -- node {} (pol);
+\draw [->] (pol) -- node {} (mon);
+\draw [->] (mon) -- node {} (coo);
+\end{tikzpicture}
+\end{document}
